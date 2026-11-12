@@ -7,8 +7,10 @@
      "Bash(npm *)",   
      "Bash(git *)",   
      "Bash(node *)"   
+   ],
+   "deny": [
+     "Bash(rm -rf *)" 
    ]
-  
   },
   "autoCompactThreshold": 80
 }
