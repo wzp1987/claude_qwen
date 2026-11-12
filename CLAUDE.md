@@ -4,43 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-书签管理应用 — 通过 Web 界面进行书签的增删改查和搜索。
+Claude Code 配置与工作空间仓库，用于存储 Claude Code 的 settings、memory、skills 等配置，以及相关实验代码。
 
-## 技术栈
+## 配置说明
 
-| 层       | 技术                              |
-| -------- | --------------------------------- |
-| 前端框架 | Next.js App Router               |
-| 语言     | TypeScript                        |
-| 样式     | Tailwind CSS                      |
-| 后端     | Next.js API Routes                |
-| 数据库   | Prisma + SQLite                   |
-| 部署     | Vercel                            |
+| 文件/路径 | 说明 |
+|-----------|------|
+| `.claude/settings.local.json` | 本地权限配置 (allow/deny 规则) |
+| `.claude/settings.json` | 项目级共享配置 |
+| `~/.claude/CLAUDE.md` | 用户级行为指令（全局） |
+| `claude.md`（本文件） | 项目级 Claude Code 指引 |
 
-## 项目结构
+## 注意事项
 
-```
-src/
-├── app/              # Next.js 页面路由
-│   ├── api/          # API 路由（统一返回 { success, data?, error? }）
-│   ├── layout.tsx    # 全局布局
-│   └── page.tsx      # 首页
-├── components/       # React 组件
-│   ├── ui/           # 通用 UI 组件
-│   └── features/     # 业务组件
-├── lib/              # 工具函数、配置
-├── prisma/           # Schema、迁移、种子数据
-└── types/            # TypeScript 类型定义
-```
-
-## 编码规范
-
-- **组件**：函数式组件 + React Hooks，文件名 PascalCase
-- **工具代码**：camelCase 命名
-- **API 响应**：统一 `{ success: boolean, data?: any, error?: string }`
-- **数据库**：所有操作通过 Prisma Client，禁止 raw SQL 直连
-
-## Git 约定
-
-- `.env`、`prisma/dev.db` 写入 `.gitignore`，不提交到仓库
-- 新功能在独立分支开发，完成后再合并到主分支
+- `.claude/settings.local.json` 应保持与全局 `CLAUDE.md` 一致的限
+- 敏感文件（`.env`、密钥、证书）不要提交到 Git
